@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@the-shopbook/database": ["libs/database/src/index.ts"],
+      "@the-shopbook/helper": ["libs/helper/src/index.ts"],
+      "@the-shopbook/interface": ["libs/interface/src/index.ts"],
+      "@the-shopbook/service": ["libs/service/src/index.ts"],
+      "@the-shopbook/utility": ["libs/utility/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
