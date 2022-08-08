@@ -4,7 +4,7 @@ interface ISchema {
   shop: mongoose.SchemaDefinitionProperty;
   dateOfDay: Date;
   entry: {
-    worker: mongoose.SchemaDefinitionProperty;
+    employee: mongoose.SchemaDefinitionProperty;
     status: string;
     checkIn: Date;
     checkOut: Date;

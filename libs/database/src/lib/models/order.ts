@@ -2,6 +2,7 @@ import mongoose from '../database';
 
 interface ISchema {
   shop: mongoose.SchemaDefinitionProperty;
+  readableId: string;
   netPrice: number;
   status: string;
   items: {
@@ -15,14 +16,16 @@ interface ISchema {
   }[];
   state: {
     isBilled: { type: boolean };
-    isPrinted: { type: boolean };
-    isPaid: { type: boolean };
+    isPrepared: { type: boolean };
+    isDelivered: { type: boolean };
+    isActive: { type: boolean };
   };
 }
 
 const schema = new mongoose.Schema<ISchema>(
   {
     shop: { type: mongoose.Schema.Types.ObjectId, ref: 'Shop' },
+    readableId: { type: String },
     netPrice: { type: Number },
     status: {
       type: String,
@@ -31,7 +34,7 @@ const schema = new mongoose.Schema<ISchema>(
     },
     items: [
       {
-        item: { type: mongoose.Schema.Types.ObjectId, ref: 'BillableItem' },
+        item: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
         totalPrice: { type: String },
         variation: [
           {
@@ -44,12 +47,15 @@ const schema = new mongoose.Schema<ISchema>(
     ],
     state: {
       isBilled: { type: Boolean, default: false },
+      isPrepared: { type: Boolean, default: false },
+      isDelivered: { type: Boolean, default: false },
+      isActive: {  type: Boolean, default: true }
     },
   },
   { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } }
 );
 
-export const BillingCartModel = mongoose.model<ISchema>(
-  'BillingCart',
+export const OrderModel = mongoose.model<ISchema>(
+  'Order',
   schema
 );

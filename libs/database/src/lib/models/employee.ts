@@ -25,7 +25,7 @@ const schema = new mongoose.Schema<ISchema>(
     access: [
       {
         type: String,
-        enum: ['manager', 'biller', 'viewer', 'none'],
+        enum: ['manager', 'biller', 'helper', 'server', 'other'],
         default: 'other',
       },
     ],
@@ -41,4 +41,4 @@ const schema = new mongoose.Schema<ISchema>(
   { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } }
 );
 
-export const WorkerModel = mongoose.model<ISchema>('Worker', schema);
+export const EmployeeModel = mongoose.model<ISchema>('Employee', schema);

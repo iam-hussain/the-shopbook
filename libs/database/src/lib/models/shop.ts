@@ -15,8 +15,8 @@ interface ISchema {
     number: string;
   };
   tags: {
-    worker: string[];
-    billableItem: string[];
+    employee: string[];
+    product: string[];
     expense: string[];
   };
   contacts: mongoose.Types.ObjectId[];
@@ -58,8 +58,8 @@ const schema = new mongoose.Schema<ISchema>(
       number: { type: String },
     },
     tags: {
-      worker: [{ type: String }],
-      billableItem: [{ type: String }],
+      employee: [{ type: String }],
+      product: [{ type: String }],
       expense: [{ type: String }],
     },
     logs: {
@@ -87,7 +87,7 @@ const schema = new mongoose.Schema<ISchema>(
 
 schema.virtual('workers', {
   type: 'ObjectId',
-  ref: 'Worker',
+  ref: 'Employee',
   localField: '_id',
   foreignField: 'shop',
 });

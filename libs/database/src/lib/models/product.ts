@@ -30,4 +30,4 @@ const schema = new mongoose.Schema<ISchema>(
   { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } }
 );
 
-export const BillableItemModel = mongoose.model<ISchema>('BillableItem', schema);
+export const ProductModel = mongoose.model<ISchema>('Product', schema);

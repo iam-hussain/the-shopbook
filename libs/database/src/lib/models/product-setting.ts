@@ -5,7 +5,7 @@ interface ISchema {
   title: string;
   readableId: string;
   category: string[];
-  billableItems: {
+  products: {
     item: mongoose.SchemaDefinitionProperty;
     variations: string[],
     available: string;
@@ -23,9 +23,9 @@ const schema = new mongoose.Schema<ISchema>(
     title: { type: String },
     readableId: { type: String },
     category: [{ type: String }],
-    billableItems: [
+    products: [
       {
-        item: { type: mongoose.Schema.Types.ObjectId, ref: 'BillableItem' },
+        item: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
         variations: [{ readableId: { type: String } }],
         available: { type: Boolean, default: false },
       },
@@ -43,7 +43,7 @@ const schema = new mongoose.Schema<ISchema>(
   { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } }
 );
 
-export const AvailabilitySettingModel = mongoose.model<ISchema>(
-  'AvailabilitySetting',
+export const ProductSettingModel = mongoose.model<ISchema>(
+  'ProductSetting',
   schema
 );

@@ -8,7 +8,7 @@ interface ISchema {
   addedAt: Date;
   netPrice: number;
   method: string;
-  worker: mongoose.SchemaDefinitionProperty;
+  employee: mongoose.SchemaDefinitionProperty;
   state: {
     isPending: { type: boolean };
   };
@@ -27,7 +27,7 @@ const schema = new mongoose.Schema<ISchema>(
       enum: ['income', 'expense', 'salary'],
       default: 'expense',
     },
-    worker: { type: mongoose.Schema.Types.ObjectId, ref: 'Worker' },
+    employee: { type: mongoose.Schema.Types.ObjectId, ref: 'Employee' },
     state: {
       isPending: { type: Boolean, default: false },
     },
@@ -35,7 +35,7 @@ const schema = new mongoose.Schema<ISchema>(
   { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } }
 );
 
-export const AccountingModel = mongoose.model<ISchema>(
-  'Accounting',
+export const TransactionModel = mongoose.model<ISchema>(
+  'Transaction',
   schema
 );

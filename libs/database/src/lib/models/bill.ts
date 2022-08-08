@@ -2,6 +2,7 @@ import mongoose from '../database';
 
 interface ISchema {
   shop: mongoose.SchemaDefinitionProperty;
+  order: mongoose.SchemaDefinitionProperty;
   readableId: string;
   netPrice: number;
   items: {
@@ -20,17 +21,19 @@ interface ISchema {
   state: {
     isPrinted: { type: boolean };
     isPaid: { type: boolean };
+    paidAt: { type: Date };
   };
 }
 
 const schema = new mongoose.Schema<ISchema>(
   {
     shop: { type: mongoose.Schema.Types.ObjectId, ref: 'Shop' },
+    order: { type: mongoose.Schema.Types.ObjectId, ref: 'Order' },
     readableId: { type: String },
     netPrice: { type: Number },
     items: [
       {
-        item: { type: mongoose.Schema.Types.ObjectId, ref: 'BillableItem' },
+        item: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
         title: { type: String },
         readableId: { type: String },
         tag: { type: String },
@@ -54,7 +57,7 @@ const schema = new mongoose.Schema<ISchema>(
   { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } }
 );
 
-export const InvoiceModal = mongoose.model<ISchema>(
-  'Invoice',
+export const BillModel = mongoose.model<ISchema>(
+  'Bill',
   schema
 );
